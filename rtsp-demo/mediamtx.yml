@@ -1,0 +1,69 @@
+# Test RTSP server for local development and the public demo.
+# Each path starts an FFmpeg test-pattern publisher when the first reader
+# connects and stops it 10s after the last one leaves.
+
+logLevel: info
+
+rtsp: true
+rtspTransports: [tcp]
+rtspAddress: :8554
+rtmp: false
+hls: false
+webrtc: false
+srt: false
+moq: false
+api: false
+metrics: false
+pprof: false
+playback: false
+
+authInternalUsers:
+  # Publishers run inside this container and connect over loopback.
+  - user: any
+    ips: ["127.0.0.1", "::1"]
+    permissions:
+      - action: publish
+
+  - user: any
+    permissions:
+      - action: read
+        path: ~^(pattern|bars|legacy)$
+
+  - user: viewer
+    pass: secret
+    permissions:
+      - action: read
+        path: secure
+
+pathDefaults:
+  runOnDemandRestart: yes
+  runOnDemandStartTimeout: 15s
+  runOnDemandCloseAfter: 10s
+
+paths:
+  # 720p30 H.264 with a keyframe every second. Played without re-encoding.
+  pattern:
+    runOnDemand: >
+      ffmpeg -hide_banner -loglevel error -re -f lavfi -i testsrc2=size=1280x720:rate=30
+      -c:v libx264 -preset ultrafast -tune zerolatency -g 30 -pix_fmt yuv420p
+      -f rtsp rtsp://localhost:8554/pattern
+
+  bars:
+    runOnDemand: >
+      ffmpeg -hide_banner -loglevel error -re -f lavfi -i smptehdbars=size=640x360:rate=25
+      -c:v libx264 -preset ultrafast -tune zerolatency -g 25 -pix_fmt yuv420p
+      -f rtsp rtsp://localhost:8554/bars
+
+  # MPEG-4 Part 2, which browsers cannot decode, to exercise transcoding.
+  legacy:
+    runOnDemand: >
+      ffmpeg -hide_banner -loglevel error -re -f lavfi -i testsrc=size=640x360:rate=25
+      -c:v mpeg4 -q:v 5 -g 25
+      -f rtsp rtsp://localhost:8554/legacy
+
+  # Requires rtsp://viewer:secret@host:8554/secure
+  secure:
+    runOnDemand: >
+      ffmpeg -hide_banner -loglevel error -re -f lavfi -i smptehdbars=size=640x360:rate=25
+      -c:v libx264 -preset ultrafast -tune zerolatency -g 25 -pix_fmt yuv420p
+      -f rtsp rtsp://localhost:8554/secure
