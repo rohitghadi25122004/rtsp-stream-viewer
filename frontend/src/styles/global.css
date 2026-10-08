@@ -1,0 +1,131 @@
+:root {
+  color-scheme: dark;
+
+  /* Surfaces: near-black with a faint blue tint so the video carries the screen. */
+  --bg: oklch(0.15 0.008 255);
+  --bar: oklch(0.18 0.009 255);
+  --surface: oklch(0.2 0.01 255);
+  --surface-raised: oklch(0.25 0.012 255);
+  --surface-hover: oklch(0.28 0.012 255);
+  --border: oklch(0.27 0.01 255);
+  --border-strong: oklch(0.36 0.012 255);
+
+  --text: oklch(0.95 0.005 255);
+  --muted: oklch(0.75 0.012 255);
+  --faint: oklch(0.64 0.012 255);
+
+  --accent: oklch(0.74 0.13 245);
+  --accent-hover: oklch(0.8 0.11 245);
+  --on-accent: oklch(0.17 0.03 245);
+
+  /* Status colors are only ever used for stream state. */
+  --live: oklch(0.66 0.2 25);
+  --ok: oklch(0.76 0.15 155);
+  --warn: oklch(0.82 0.14 80);
+  --danger: oklch(0.66 0.2 25);
+  --danger-text: oklch(0.82 0.09 25);
+  --danger-surface: oklch(0.25 0.06 25);
+
+  --scrim: oklch(0.12 0.01 255 / 0.72);
+
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --radius-full: 999px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  --font-sans: 'IBM Plex Sans Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', Menlo, Consolas, monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.375rem;
+
+  --control-sm: 32px;
+  --control: 38px;
+
+  --shadow-pop: 0 1px 0 oklch(1 0 0 / 0.04) inset, 0 16px 40px oklch(0 0 0 / 0.5);
+
+  --z-sticky: 10;
+  --z-popover: 20;
+
+  --ease-out: cubic-bezier(0.25, 1, 0.5, 1);
+  --duration: 160ms;
+
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  font-kerning: normal;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  font-size: var(--text-base);
+  letter-spacing: 0.005em;
+}
+
+h1,
+h2,
+h3,
+p,
+ul {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+button,
+input {
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  font-variant-ligatures: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

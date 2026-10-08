@@ -1,0 +1,41 @@
+.summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  padding: 0;
+  list-style: none;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.summary li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.count {
+  color: var(--text);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--faint);
+}
+
+[data-group='live'] .dot {
+  background: var(--live);
+}
+
+[data-group='reconnecting'] .dot {
+  background: var(--warn);
+}
+
+[data-group='error'] .dot {
+  background: var(--danger);
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--danger) 25%, transparent);
+}

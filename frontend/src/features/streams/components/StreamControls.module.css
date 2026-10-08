@@ -1,0 +1,21 @@
+.controls {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--space-1);
+  transition: opacity var(--duration) var(--ease-out);
+}
+
+/* On mouse devices the controls stay out of the picture until needed. */
+@media (hover: hover) {
+  .controls {
+    opacity: 0;
+  }
+
+  article:hover .controls,
+  article:not([data-state='live']) .controls,
+  .controls:focus-within,
+  .controls[data-confirming] {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,40 @@
+.picker {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.option {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 30px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-xs);
+  color: var(--faint);
+  transition:
+    background-color var(--duration) var(--ease-out),
+    color var(--duration) var(--ease-out);
+}
+
+.option:hover {
+  color: var(--text);
+}
+
+.option[aria-checked='true'] {
+  background: var(--surface-hover);
+  color: var(--text);
+  box-shadow: 0 1px 2px oklch(0 0 0 / 0.3);
+}
+
+/* Phones always get one column, so the picker would do nothing. */
+@media (max-width: 640px) {
+  .picker {
+    display: none;
+  }
+}

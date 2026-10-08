@@ -1,0 +1,105 @@
+.button {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  height: var(--control);
+  padding: 0 var(--space-4);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-base);
+  font-weight: 500;
+  white-space: nowrap;
+  transition:
+    background-color var(--duration) var(--ease-out),
+    border-color var(--duration) var(--ease-out),
+    color var(--duration) var(--ease-out),
+    transform var(--duration) var(--ease-out);
+}
+
+.button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.button:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.primary {
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+}
+
+.primary:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.secondary {
+  background: var(--surface-raised);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.secondary:hover:not(:disabled) {
+  background: var(--surface-hover);
+  border-color: var(--border-strong);
+}
+
+.ghost {
+  background: transparent;
+  color: var(--muted);
+}
+
+.ghost:hover:not(:disabled) {
+  background: var(--surface-raised);
+  color: var(--text);
+}
+
+.danger {
+  background: var(--danger-surface);
+  border-color: color-mix(in oklch, var(--danger) 45%, transparent);
+  color: var(--danger-text);
+}
+
+.danger:hover:not(:disabled) {
+  border-color: var(--danger);
+}
+
+/* Sits on top of video, so it needs its own backing. */
+.overlay {
+  background: var(--scrim);
+  color: var(--text);
+}
+
+.overlay:hover:not(:disabled) {
+  background: oklch(0.3 0.012 255 / 0.9);
+}
+
+.icon {
+  width: var(--control-sm);
+  height: var(--control-sm);
+  padding: 0;
+  border-radius: var(--radius-full);
+}
+
+.icon.danger {
+  width: auto;
+  padding: 0 var(--space-3);
+  font-size: var(--text-sm);
+}
+
+@media (pointer: coarse) {
+  .icon {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button:active:not(:disabled) {
+    transform: none;
+  }
+}

@@ -1,0 +1,69 @@
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-7) var(--space-5) var(--space-5);
+  color: var(--muted);
+  text-align: center;
+}
+
+.dim {
+  background: oklch(0 0 0 / 0.5);
+}
+
+.title {
+  color: var(--text);
+  font-size: var(--text-base);
+  font-weight: 600;
+}
+
+.detail {
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.diagnostic {
+  max-width: 100%;
+  overflow: hidden;
+  color: var(--faint);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.retry {
+  margin-top: var(--space-2);
+  height: var(--control-sm);
+  border-radius: var(--radius-full);
+}
+
+.play {
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  padding-left: 3px;
+  background: var(--scrim);
+  border: 1px solid oklch(1 0 0 / 0.18);
+  border-radius: 50%;
+  color: var(--text);
+  transition:
+    background-color var(--duration) var(--ease-out),
+    transform var(--duration) var(--ease-out);
+}
+
+.play:hover {
+  background: oklch(0.3 0.012 255 / 0.9);
+  transform: scale(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .play:hover {
+    transform: none;
+  }
+}

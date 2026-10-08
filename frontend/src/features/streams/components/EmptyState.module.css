@@ -1,0 +1,82 @@
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  max-width: 520px;
+  margin: 10vh auto 0;
+  text-align: center;
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--space-2);
+  background: var(--surface-raised);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  color: var(--accent);
+}
+
+.title {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.text {
+  max-width: 44ch;
+  margin-bottom: var(--space-3);
+  color: var(--muted);
+  font-size: var(--text-md);
+  text-wrap: pretty;
+}
+
+.examples {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+  margin: var(--space-6) 0 0;
+  padding: var(--space-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-align: left;
+}
+
+.examples div {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  gap: var(--space-3);
+  align-items: baseline;
+}
+
+.examples dt {
+  color: var(--faint);
+  font-size: var(--text-sm);
+}
+
+.examples dd {
+  margin: 0;
+}
+
+.examples code {
+  overflow-wrap: anywhere;
+  color: var(--text);
+}
+
+@media (max-width: 480px) {
+  .empty {
+    margin-top: var(--space-5);
+  }
+
+  .examples div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+}

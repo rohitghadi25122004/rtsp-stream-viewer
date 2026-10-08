@@ -1,0 +1,52 @@
+/* Before the first measurement (and for the loading skeleton) tiles just fill the row. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 12px;
+}
+
+/* Sized by useGridFit so the whole wall fits the screen. */
+.grid[data-fitted] {
+  grid-template-columns: repeat(var(--cols), var(--tile-width));
+  justify-content: center;
+  gap: var(--gap);
+}
+
+.skeleton {
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.skeletonMedia {
+  aspect-ratio: 16 / 9;
+  background: var(--bar);
+  animation: pulse 1.4s var(--ease-out) infinite alternate;
+}
+
+.skeletonBar {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 var(--space-4);
+}
+
+.skeletonBar span {
+  width: 40%;
+  height: 10px;
+  border-radius: var(--radius-full);
+  background: var(--surface-raised);
+}
+
+@keyframes pulse {
+  to {
+    opacity: 0.45;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeletonMedia {
+    animation: none;
+  }
+}
