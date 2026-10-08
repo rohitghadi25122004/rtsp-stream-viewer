@@ -1,0 +1,5 @@
+.env
+.env.local
+*.exe
+/backend/server
+.DS_Store
